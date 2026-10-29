@@ -1,4 +1,4 @@
-const CACHE = 'daiso-c18-v1';
+const CACHE = 'daiso-c18-v2';
 const ASSETS = [
   './',
   'index.html',
