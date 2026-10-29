@@ -27,4 +27,4 @@ try{var saved=JSON.parse(localStorage.getItem('daiso-c18-v2'));if(saved){if(Arra
 flow.addEventListener('input',function(){update('flow')});
 flow.addEventListener('change',function(){update()});
 $('reset').addEventListener('click',function(){d.value=DEF.d;h.value=DEF.h;l.value=DEF.l;vel.value=DEF.u;update()});
-update()})();if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script></body></html>
+update()})();if('serviceWorker' in navigator){var hadSW=!!navigator.serviceWorker.controller,reloaded=false;navigator.serviceWorker.addEventListener('controllerchange',function(){if(hadSW&&!reloaded){reloaded=true;location.reload()}});window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(function(r){r.update()}).catch(function(){})})}</script></body></html>

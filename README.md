@@ -16,4 +16,5 @@ https://abedassadi-wq.github.io/daiso-c18-calculato/
 - `sw.js` – Service Worker לעבודה אופליין
 - `icons/` – אייקונים
 
-כשמעדכנים קבצים, יש להעלות את `CACHE` ב-`sw.js` (למשל `daiso-c18-v2`). האתר מוצג מהענף `gh-pages`, לכן צריך לעדכן גם אותו.
+## עדכונים
+עובדים רק על `main`. בכל דחיפה ל-`main` הפעולה `.github/workflows/deploy.yml` מעתיקה את הקבצים לענף `gh-pages` (שממנו GitHub Pages מציג את האתר) ומחתימה את גרסת ה-cache ב-`sw.js` לפי הקומיט, כך שהאפליקציה בטלפון מתעדכנת לבד. אין לערוך את `gh-pages` ידנית.

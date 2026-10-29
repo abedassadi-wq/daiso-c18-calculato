@@ -1,0 +1,34 @@
+name: Deploy to GitHub Pages
+
+# Copies main to the gh-pages branch (which GitHub Pages serves),
+# stamping the service worker cache with the commit so phones pick up updates.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Stamp build version
+        run: sed -i "s/__BUILD__/${GITHUB_SHA::7}/g" sw.js
+
+      - name: Push to gh-pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan deploy
+          git rm -rq --cached .github
+          git add -A
+          git commit -qm "Deploy ${GITHUB_SHA::7}"
+          git push -f origin deploy:gh-pages
