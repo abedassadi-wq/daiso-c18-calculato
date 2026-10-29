@@ -1,4 +1,4 @@
-// __BUILD__ is replaced with the commit hash on deploy (see .github/workflows/deploy.yml).
+// The cache name below gets the commit hash on deploy (see .github/workflows/deploy.yml).
 const CACHE = 'daiso-c18-__BUILD__';
 const ASSETS = [
   './',
